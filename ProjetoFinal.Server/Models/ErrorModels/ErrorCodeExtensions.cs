@@ -1,5 +1,4 @@
-﻿using MongoDB.Driver;
-using System;
+﻿using System;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BlMadre.C_.Models
@@ -29,6 +28,18 @@ namespace BlMadre.C_.Models
         /// pattern.
         /// </summary>
         DataInvalidRegex = 3,
+
+        /// <summary>
+        /// Represents an invalid item state or type.
+        /// </summary>
+        /// <remarks>This enumeration value is typically used to indicate that an item is invalid or does
+        /// not meet the required criteria.</remarks>
+        InvalidItem = 4,
+
+        /// <summary>
+        /// Represents an error code indicating that the specified item was not found.
+        /// </summary>
+        ItemNotFound = 5,
 
         /// <summary>
         /// Null Reference Detected.
@@ -212,6 +223,10 @@ namespace BlMadre.C_.Models
                 ErrorCode.DataNoSlash => "String nao contem \"/\"",
                 ErrorCode.DataInvalidRegex => "String falhou na Regex",
 
+                //Erros de item
+                ErrorCode.InvalidItem => "Item inválido.",
+                ErrorCode.ItemNotFound => "Item não encontrado.",
+
                 //erros gerais
                 ErrorCode.NullReference => "Referência nula detectada.",
                 ErrorCode.BadRequest => "Requisição malformada.",
@@ -255,7 +270,13 @@ namespace BlMadre.C_.Models
     public class AppException : Exception
     {
         public ErrorCode Code { get; }
-
+        #region summary
+        /// <summary>
+        /// Inicializa uma nova instancia de <see cref="AppException"/> com o codigo de erro especificado
+        /// </summary>
+        /// <param name="code">O codigo de erro a ser passado</param>
+        /// <param name="message">Mensagem opcional</param>
+        #endregion
         public AppException(ErrorCode code, string? message = null)
             : base(message ?? code.GetMessage())
         {
@@ -302,7 +323,6 @@ namespace BlMadre.C_.Models
                     UnauthorizedAccessException => ErrorCode.Unauthorized,
                     ArgumentNullException => ErrorCode.NullReference,
                     TimeoutException => ErrorCode.RequestTimeout,
-                    MongoConnectionException => ErrorCode.MongoConnectionFailed,
                     _ => ErrorCode.InternalServerError
                 },
 #if DEBUG

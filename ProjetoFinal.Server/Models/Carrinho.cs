@@ -17,12 +17,13 @@ namespace BlMadre.C_.Models
             Inner = produto ?? new List<Produto>();
         }
 
-
+        #region summary
         /// <summary>
         /// Adiciona um produto ao carrinho.
         /// </summary>
         /// <param name="produto"><see cref="Produto"/> a ser adicionado</param>
         /// <exception cref="InvalidOperationException"></exception>
+        #endregion
         public void Add(Produto produto)
         {
             if (produto.Quantidade == 0)
@@ -39,6 +40,14 @@ namespace BlMadre.C_.Models
                 Inner.Add(produto);
             }
         }
+
+        #region summary
+        /// <summary>
+        /// remove um produto do carrinho pelo nome.
+        /// </summary>
+        /// <param name="nome"></param>
+        /// <exception cref="KeyNotFoundException"></exception>
+        #endregion
         public void Remove(string nome)
         {
             var produto = Inner.FirstOrDefault(p => p.Nome == nome);
@@ -52,11 +61,24 @@ namespace BlMadre.C_.Models
             }
         }
 
+        #region summary
+        /// <summary>
+        /// Limpa o carrinho, removendo todos os produtos.
+        /// </summary>
+        #endregion
         public void Clear()
         {
             Inner.Clear();
         }
 
+        #region summary
+        /// <summary>
+        /// Edita a quantidade de um produto no carrinho.
+        /// </summary>
+        /// <param name="nome">Nome do produto</param>
+        /// <param name="newQuantity">Produto a ser mudado</param>
+        /// <exception cref="KeyNotFoundException"></exception>
+        #endregion
         public void Edit(string nome, int newQuantity)
         {
             var produto = Inner.FirstOrDefault(p => p.Nome == nome);
@@ -73,7 +95,7 @@ namespace BlMadre.C_.Models
             }
             else
             {
-                throw new KeyNotFoundException("Produto não encontrado no carrinho.");
+                throw new AppException(ErrorCode.ItemNotFound);
             }
         }
 

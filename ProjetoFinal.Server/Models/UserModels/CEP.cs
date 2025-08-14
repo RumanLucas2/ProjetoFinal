@@ -29,25 +29,27 @@ namespace BlMadre.C_.Models
             };
         }
 
-
+        #region summary
         /// <summary>
         /// Processes the specified result using the API Brasil logic.
         /// </summary>
         /// <param name="result">An integer value to be processed. This value is returned as-is.</param>
         /// <returns>The same integer value provided in the <paramref name="result"/> parameter.</returns>
         /// <remarks>- <b>Work in progress, this method is a placeholder for future logic.</b> -</remarks>
+        #endregion
         private static int UseAPIBrasil(int result)
         {
             return result;
         }
 
-
+        #region summary
         /// <summary>
         /// Processes the given result string and returns its length.
         /// </summary>
         /// <param name="result">The string to be processed. Cannot be null.</param>
         /// <returns>The length of the <paramref name="result"/> string.</returns>
         /// <remarks>- <b>Work in progress, this method is a placeholder for future logic.</b> -</remarks>
+        #endregion  
         private static int UseViaCep(string result)
         {
             return result.Length;
