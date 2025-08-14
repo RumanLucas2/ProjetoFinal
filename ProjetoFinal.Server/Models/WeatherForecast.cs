@@ -1,4 +1,4 @@
-namespace ProjetoFinal.Server
+namespace ProjetoFinal.Server.Models
 {
     public class WeatherForecast
     {

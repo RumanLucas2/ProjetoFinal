@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ProjetoFinal.Server.Models;
 
 namespace ProjetoFinal.Server.Controllers
 {
