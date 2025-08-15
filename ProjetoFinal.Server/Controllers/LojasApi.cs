@@ -43,8 +43,8 @@ namespace ProjetoFinal.Server.Controllers
                 //return Unauthorized(new { error = "Credenciais inválidas." });
                 return Ok(new Loja
                 {
-                    Login = "lucas",
-                    Senha = "1234",
+                    Login = login,
+                    Senha = senha,
                 });
 
             // não exponha a senha na resposta
