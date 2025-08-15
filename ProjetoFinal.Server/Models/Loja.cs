@@ -1,7 +1,11 @@
-﻿public class Loja
+﻿using Microsoft.AspNetCore.Mvc;
+
+public class Loja
 {
     
-public string? Id { get; set; }
+    public string? Id { get; set; }
+
+    public Guid UserId { get; set; }
 
     public required string Login { get; set; }
 
@@ -21,5 +25,10 @@ public string? Id { get; set; }
     public override string ToString()
     {
         return $"Loja: {Nome},Senha: {Senha}, Login: {Login}, Tipo: {Tipo}";
+    }
+
+    public JsonResult ToJson()
+    {
+        return new JsonResult(this);
     }
 }

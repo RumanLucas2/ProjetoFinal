@@ -4,7 +4,13 @@ namespace BlMadre.C_.Models
 {
     public class Carrinho
     {
-        public List<Produto> Inner { get; set; }
+        private List<Produto> Inner { get; set; }
+
+        public Guid UserId 
+        { 
+            get;
+            private set;
+        }
 
         // Construtor padrão necessário para desserialização
         public Carrinho()
@@ -24,21 +30,14 @@ namespace BlMadre.C_.Models
         /// <param name="produto"><see cref="Produto"/> a ser adicionado</param>
         /// <exception cref="InvalidOperationException"></exception>
         #endregion
-        public void Add(Produto produto)
+        public void Add(Produto produto, Client cliente)
         {
-            if (produto.Quantidade == 0)
-            {
-                throw new InvalidOperationException("Produto esgotado.");
-            }
+            if (produto.Quantidade <= 0) throw new AppException(ErrorCode.ItemQuantityInvalid);
             var existingProduct = Inner.FirstOrDefault(p => p.Nome == produto.Nome);
-            if (existingProduct != null)
-            {
-                existingProduct.Quantidade += produto.Quantidade ?? 1;
-            }
-            else
-            {
-                Inner.Add(produto);
-            }
+            if (existingProduct != null) existingProduct.Quantidade += produto.Quantidade ?? 1;
+            if(cliente == null) throw new AppException(ErrorCode.NullReference, "Usuario Nulo no Carrinho");
+            UserId = cliente.id;
+            Inner.Add(produto);
         }
 
         #region summary
@@ -57,7 +56,7 @@ namespace BlMadre.C_.Models
             }
             else
             {
-                throw new KeyNotFoundException("Produto não encontrado no carrinho.");
+                throw new AppException(ErrorCode.ItemNotFound);
             }
         }
 
@@ -133,7 +132,7 @@ namespace BlMadre.C_.Models
         {
             if (Inner.Count == 0)
             {
-                throw new InvalidOperationException("Carrinho vazio.");
+                throw new AppException(ErrorCode.EmptyCart);
             }
             return Inner.FirstOrDefault(c => c.Nome == prod.Nome);
 

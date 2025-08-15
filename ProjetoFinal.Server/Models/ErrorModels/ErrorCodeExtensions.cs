@@ -42,6 +42,18 @@ namespace BlMadre.C_.Models
         ItemNotFound = 5,
 
         /// <summary>
+        /// Represents an error code indicating that the quantity of an item is invalid.
+        /// </summary>
+        /// <remarks>This error code is typically used to signify that the specified item quantity does
+        /// not meet the required constraints, such as being negative or exceeding allowable limits.</remarks>
+        ItemQuantityInvalid = 6,
+
+        /// <summary>
+        /// Represents an error code indicating that the shopping cart is empty.
+        /// </summary>
+        EmptyCart = 7,
+
+        /// <summary>
         /// Null Reference Detected.
         /// </summary>
         NullReference = 1000,
@@ -226,6 +238,10 @@ namespace BlMadre.C_.Models
                 //Erros de item
                 ErrorCode.InvalidItem => "Item inválido.",
                 ErrorCode.ItemNotFound => "Item não encontrado.",
+                ErrorCode.ItemQuantityInvalid => "Quantidade do item inválida.",
+
+                //Erros de Carrinho
+                ErrorCode.EmptyCart => "Carrinho vazio.",
 
                 //erros gerais
                 ErrorCode.NullReference => "Referência nula detectada.",

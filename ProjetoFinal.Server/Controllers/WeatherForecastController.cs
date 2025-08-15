@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjetoFinal.Server.Models;
 
-namespace ProjetoFinal.Server.Controllers
+/*namespace ProjetoFinal.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -16,7 +16,7 @@ namespace ProjetoFinal.Server.Controllers
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
-            _logger = logger;
+            _logger = logger;   
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
@@ -31,4 +31,4 @@ namespace ProjetoFinal.Server.Controllers
             .ToArray();
         }
     }
-}
+}*/

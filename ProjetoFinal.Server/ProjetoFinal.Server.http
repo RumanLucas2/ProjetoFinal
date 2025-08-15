@@ -1,6 +1,7 @@
-@ProjetoFinal.Server_HostAddress = http://localhost:5117
+@host = http://localhost:5117
 
-GET {{ProjetoFinal.Server_HostAddress}}/weatherforecast/
+### Buscar loja usando headers
+GET {{host}}/api/lojas/GetLoja
 Accept: application/json
-
-###
+login: lucas
+senha: 1234

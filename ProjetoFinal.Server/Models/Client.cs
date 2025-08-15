@@ -10,7 +10,7 @@ namespace BlMadre.C_.Models
         /// Gets or sets the unique identifier for the user.
         /// </summary>
         #endregion
-        public string? id { get; set; }
+        public Guid id { get; set; }
 
         #region symmaryNome
         /// <summary>
