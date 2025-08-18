@@ -37,7 +37,7 @@ Recebe dois números e retorna a sua soma.
 
 - [@Pedro Henrique Santos de Araujo](https://www.github.com/PedroHenriqueAraujo18)
 
-- [@Lucas Albrechete Lopes Ruman](https://www.github.com/RumanLucas2)
+- [@Lucas Albrechet Lopes Ruman](https://www.github.com/RumanLucas2)
 
 - [@Bruna Rodrigues Cardoso ](https://www.github.com/)
 
