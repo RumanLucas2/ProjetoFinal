@@ -14,7 +14,7 @@ Um sistema de integração entre WhatsApp Business , aonde o pedido pelo cliente
 
 | Local   | Parâmetro | Tipo   | Descrição                          |
 |---------|-----------|--------| :----------------------------------|
-| Header  | `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| `Header`  | `api_key` | `string` | **Obrigatório**. A chave da sua API |
 
 
 #### Retorna um item
