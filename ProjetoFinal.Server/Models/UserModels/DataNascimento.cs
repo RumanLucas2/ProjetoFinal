@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace BlMadre.C_.Models
+namespace ProjetoFinal.Server.Models.UserModels
 {
     public class DataNascimento
     {

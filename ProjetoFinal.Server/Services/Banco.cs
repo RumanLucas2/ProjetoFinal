@@ -1,8 +1,7 @@
-﻿namespace ProjetoFinal.Server.Services
-{
-    using BlMadre.C_.Models;
-    using ProjetoFinal.Server.Models;
+﻿using ProjetoFinal.Server.Models;
 
+namespace ProjetoFinal.Server.Services
+{
     /// <summary>
     /// Banco de dados simulado para armazenar as lojas.
     /// </summary>

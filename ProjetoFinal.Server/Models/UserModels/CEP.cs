@@ -1,8 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using System.Diagnostics.CodeAnalysis;
+using System.Text.RegularExpressions;
 
-namespace BlMadre.C_.Models
+namespace ProjetoFinal.Server.Models.UserModels
 {
+    #region summary
+    /// <summary>
+    /// CLasse de CEP
+    /// </summary>
+    #endregion 
     public class CEP
     {
         //TODO: mudar cep para numero aqui e no banco!
@@ -19,10 +25,16 @@ namespace BlMadre.C_.Models
         private string gia = string.Empty;
         private string siafi = string.Empty;
 
-        //TODO: fazer depois CEP
+        #region summary
+        /// <summary>
+        /// Inicializa um novo objeto CEP com a string fornecida fornecido.
+        /// </summary>
+        /// <param name="_cep"></param>
+        /// <returns></returns>
+        #endregion
         public static CEP SetCEP(string _cep)
         {
-            
+            if (!Regex.IsMatch(_cep, "^\\d{5}-\\d{3}$\r\n")) throw new AppException(ErrorCode.InvalidCep);
             return new CEP {
                                                                 /*Caso CEP*/            /*Caso Endereco*/
                 cep = int.TryParse(_cep, out var resultado) ? UseAPIBrasil(resultado) : UseViaCep(_cep),
@@ -55,12 +67,19 @@ namespace BlMadre.C_.Models
             return result.Length;
         }
 
-
+        /// <summary>
+        /// Transforma o CEP em uma string formatada, útil para APIs.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return $"{cep}";
         }
 
+        /// <summary>
+        /// Transforma o CEP completo em uma string formatada, útil para APIs.
+        /// </summary>
+        /// <returns></returns>
         public string FullString()
         {
             return "" +

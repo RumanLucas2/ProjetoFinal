@@ -1,7 +1,7 @@
 ﻿using System;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace BlMadre.C_.Models
+namespace ProjetoFinal.Server.Models
 {
     /// <summary>
     /// Enum de Erros do aplicativo
@@ -221,8 +221,17 @@ namespace BlMadre.C_.Models
         Force3 = 2003,
     }
 
+    /// <summary>
+    /// Classe de extensões para o enum <see cref="ErrorCode"/>.
+    /// </summary>
     public static class ErrorCodeExtensions
     {
+
+        /// <summary>
+        /// Procura a mensagem associada ao código de erro.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public static string GetMessage(this ErrorCode code)
         {
             return code switch
@@ -283,8 +292,14 @@ namespace BlMadre.C_.Models
         }
     }
 
+    /// <summary>
+    /// classe de exceção personalizada para o aplicativo.
+    /// </summary>
     public class AppException : Exception
     {
+        /// <summary>
+        /// Pega a propriedade <see cref="ErrorCode"/> que representa o código de erro associado a esta exceção.
+        /// </summary>
         public ErrorCode Code { get; }
         #region summary
         /// <summary>
@@ -300,16 +315,46 @@ namespace BlMadre.C_.Models
         }
     }
 
+    /// <summary>
+    /// ErrorResult é uma classe genérica que encapsula o resultado de uma operação
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ErrorResult<T>
     {
+        /// <summary>
+        /// Sucesso indica se a operação foi bem-sucedida.
+        /// </summary>
         public bool Success => Code == ErrorCode.None;
+
+        /// <summary>
+        /// Codigo de erro associado ao resultado.
+        /// </summary>
         public ErrorCode Code { get; set; }
+
+        /// <summary>
+        /// Mensagem associada ao resultado.
+        /// </summary>
         public string Message { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Valor de dados associado ao resultado, se houver.
+        /// </summary>
         public T? Data { get; set; }
 
+        /// <summary>
+        /// Retorna um resultado de sucesso com os dados fornecidos.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static ErrorResult<T> Ok(T data) =>
             new() { Code = ErrorCode.None, Data = data };
 
+        /// <summary>
+        /// Retorna um resultado de falha com o código de erro e mensagem fornecidos.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public static ErrorResult<T> Fail(ErrorCode code, string? message = null) =>
             new()
             {
@@ -317,6 +362,11 @@ namespace BlMadre.C_.Models
                 Message = message ?? code.GetMessage()
             };
 
+        /// <summary>
+        /// Retorna um resultado de falha baseado na exceção fornecida.
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <returns></returns>
         public static ErrorResult<T> FromException(Exception ex)
         {
             if (ex is AppException appEx)

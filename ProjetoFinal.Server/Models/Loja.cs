@@ -1,34 +1,70 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-public class Loja
+
+namespace ProjetoFinal.Server.Models
 {
-    
-    public string? Id { get; set; }
+    /// <summary>
+    /// Classe representando uma loja.
+    /// </summary>
+    public class Loja
+    {
 
-    public Guid UserId { get; set; }
+        /// <summary>
+        /// Id da loja.
+        /// </summary>
+        public Guid Id { get; set; }
 
-    public required string Login { get; set; }
+        /// <summary>
+        /// ID do <see cref="User"/> associado à loja.
+        /// </summary>
+        public Guid UserId { get; set; }
 
-    public required string Senha
-    { 
-        get;
-        set
+        /// <summary>
+        /// Login da loja.
+        /// </summary>
+        public required string Login { get; set; }
+
+        /// <summary>
+        /// Senha da loja.
+        /// </summary>
+        public required string Senha
         {
-            field = value;
+            get;
+            set
+            {
+                field = value;
+            }
+        }
+
+        /// <summary>
+        /// Nome da loja.
+        /// </summary>
+        public string? Nome { get; set; }
+
+        /// <summary>
+        /// Tipo da loja.
+        /// </summary>
+        public string? Tipo { get; set; }
+
+        /// <summary>
+        /// Transforma o objeto Loja em uma string formatada.
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks><b>- Use Apenas em Development, mostra a senha nao criptografada -</b></remarks>
+        public override string ToString()
+        {
+            return $"Loja: {Nome}, Senha: {Senha}, Login: {Login}, Tipo: {Tipo}";
+        }
+
+        /// <summary>
+        /// Transforma o objeto Loja em um JsonResult.
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult ToJsonResult()
+        {
+            return new JsonResult(this);
         }
     }
 
-    public string? Nome { get; set; }
-
-    public string? Tipo { get; set; }
-
-    public override string ToString()
-    {
-        return $"Loja: {Nome},Senha: {Senha}, Login: {Login}, Tipo: {Tipo}";
-    }
-
-    public JsonResult ToJson()
-    {
-        return new JsonResult(this);
-    }
 }
+

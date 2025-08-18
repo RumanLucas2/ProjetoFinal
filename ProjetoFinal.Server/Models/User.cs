@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjetoFinal.Server.Models.UserModels;
 
-namespace BlMadre.C_.Models
+namespace ProjetoFinal.Server.Models
 {
-
-    public class Client
+    /// <summary>
+    /// Classe representando um cliente.
+    /// </summary>
+    public class User
     {
         #region symmaryID
         /// <summary>
@@ -94,7 +97,7 @@ namespace BlMadre.C_.Models
 
         #region ToString
         /// <summary>
-        /// Returns a string representation of the Client object.
+        /// Returns a string representation of the User object.
         /// </summary>
         /// <returns><see cref="JsonResult"/> style string</returns>
         #endregion

@@ -1,8 +1,11 @@
-﻿namespace BlMadre.C_.Models
+﻿namespace ProjetoFinal.Server.Models
 {
     using System.Runtime.Serialization;
     using System.Text.Json.Serialization;
 
+    /// <summary>
+    /// Classe de Produto
+    /// </summary>
     public class Produto
     {
         #region summaryID

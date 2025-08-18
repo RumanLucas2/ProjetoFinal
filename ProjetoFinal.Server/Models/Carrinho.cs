@@ -1,23 +1,37 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ProjetoFinal.Server.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace BlMadre.C_.Models
+namespace ProjetoFinal.Server.Models
 {
+    /// <summary>
+    /// Carrinho de compras que gerencia uma coleção de produtos.
+    /// </summary>
     public class Carrinho
     {
         private List<Produto> Inner { get; set; }
 
+        /// <summary>
+        /// Id do usuário associado ao carrinho.
+        /// </summary>
         public Guid UserId 
         { 
             get;
             private set;
         }
 
-        // Construtor padrão necessário para desserialização
+        /// <summary>
+        /// Construtor Limpo
+        /// </summary>
         public Carrinho()
         {
             Inner = new List<Produto>();
         }
 
+
+        /// <summary>
+        /// Construtor que recebe uma lista de produtos.
+        /// </summary>
+        /// <param name="produto"></param>
         public Carrinho(List<Produto>? produto)
         {
             Inner = produto ?? new List<Produto>();
@@ -28,9 +42,10 @@ namespace BlMadre.C_.Models
         /// Adiciona um produto ao carrinho.
         /// </summary>
         /// <param name="produto"><see cref="Produto"/> a ser adicionado</param>
+        /// <param name="cliente"></param>
         /// <exception cref="InvalidOperationException"></exception>
         #endregion
-        public void Add(Produto produto, Client cliente)
+        public void Add(Produto produto, User cliente)
         {
             if (produto.Quantidade <= 0) throw new AppException(ErrorCode.ItemQuantityInvalid);
             var existingProduct = Inner.FirstOrDefault(p => p.Nome == produto.Nome);
@@ -97,12 +112,19 @@ namespace BlMadre.C_.Models
                 throw new AppException(ErrorCode.ItemNotFound);
             }
         }
-
+        /// <summary>
+        /// Valor total do carrinho, calculando o preço de cada produto multiplicado pela quantidade.
+        /// </summary>
+        /// <returns><see cref="decimal"/></returns>
         public decimal Total()
         {
             return Inner.Sum(p => p.Preco * (p.Quantidade ?? 1));
         }
 
+        /// <summary>
+        /// Transforma o carrinho em uma string formatada, listando os produtos e seus preços.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             string aux = "";
@@ -112,7 +134,10 @@ namespace BlMadre.C_.Models
             }
             return aux;
         }
-
+        /// <summary>
+        /// Transforma o carrinho em um JsonResult, útil para APIs.
+        /// </summary>
+        /// <returns></returns>
         public JsonResult ToJsonResult()
         {
             return new JsonResult(Inner.Select(p => new
@@ -123,11 +148,22 @@ namespace BlMadre.C_.Models
             }));
         }
 
+        /// <summary>
+        /// Procura um produto pelo nome no carrinho.
+        /// </summary>
+        /// <param name="nome">Valor a ser procurado</param>
+        /// <returns><see cref="Produto"/></returns>
         public Produto? FindByName(string nome)
         {
             return Inner.FirstOrDefault(c => c.Nome == nome);
         }
 
+        /// <summary>
+        /// Procura um produto no carrinho.
+        /// </summary>
+        /// <param name="prod"></param>
+        /// <returns></returns>
+        /// <exception cref="AppException"></exception>
         public Produto? Find(Produto prod)
         {
             if (Inner.Count == 0)
