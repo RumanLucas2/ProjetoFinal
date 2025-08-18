@@ -1,4 +1,5 @@
-﻿using ProjetoFinal.Server.Models;
+﻿using Microsoft.AspNetCore.Identity;
+using ProjetoFinal.Server.Models;
 
 namespace ProjetoFinal.Server.Services
 {
@@ -7,6 +8,7 @@ namespace ProjetoFinal.Server.Services
     /// </summary>
     public static class Password
     {
+        #region summary
         /// <summary>
         /// Encripta a senha informada usando o algoritmo BCrypt.
         /// </summary>
@@ -14,6 +16,8 @@ namespace ProjetoFinal.Server.Services
         /// <param name="workFactor"></param>
         /// <returns></returns>
         /// <exception cref="ErrorCode.NullReference"></exception>
+        /// 
+        #endregion
         public static string Encript(string senha, int workFactor = 12)
         {
             if (string.IsNullOrEmpty(senha))
@@ -21,7 +25,7 @@ namespace ProjetoFinal.Server.Services
 
             return BCrypt.Net.BCrypt.HashPassword(senha, workFactor);
         }
-
+        #region summary
         /// <summary>
         /// Verifica se a senha informada corresponde ao hash fornecido.
         /// </summary>
@@ -29,6 +33,8 @@ namespace ProjetoFinal.Server.Services
         /// <param name="hash"></param>
         /// <returns></returns>
         /// <exception cref="ErrorCode.NullReference"></exception>
+        /// 
+        #endregion
         public static bool Verify(string senha, string hash)
         {
             if (string.IsNullOrEmpty(senha)) throw new AppException(ErrorCode.NullReference);

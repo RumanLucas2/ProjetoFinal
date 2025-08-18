@@ -3,19 +3,22 @@
     using System.Runtime.Serialization;
     using System.Text.Json.Serialization;
 
+    #region summary
     /// <summary>
     /// Classe de Produto
     /// </summary>
+    /// 
+    #endregion
     public class Produto
     {
-        #region summaryID
+        #region summary
         /// <summary>
         /// ID do produto em estoque
         /// </summary>
         #endregion
         public string? Id { get; set; }
 
-        #region summaryCategoria
+        #region summary
         /// <summary>
         /// Categoria do produto em estoque
         /// </summary>
@@ -23,14 +26,14 @@
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? Categoria { get; set; }
 
-        #region summaryNome
+        #region summary
         /// <summary>
         /// Nome do produto em estoque
         /// </summary>
         #endregion
         public string? Nome { get; set; }
 
-        #region summaryPreco
+        #region summary
         /// <summary>
         /// Preco unitario do produto:
         /// <list type="bullet">
@@ -45,7 +48,7 @@
         #endregion
         public decimal Preco { get; set; }
 
-        #region summaryQuantidade
+        #region summary
         /// <summary>
         /// Estoque do produto:
         /// <list type="bullet">
