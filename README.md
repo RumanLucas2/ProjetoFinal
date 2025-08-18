@@ -23,8 +23,8 @@ Um sistema de integração entre WhatsApp Business , aonde o pedido pelo cliente
   GET /api/items/${id}
 ```
 
-| Local   | Parâmetro | Tipo   | Descrição                          |
-| :------ | :---------- | :--------- | :------------------------------------------ |
+| Local | Parâmetro | Tipo | Descrição                          |
+| ----- | --------- | ---- | :------------------------------------------ |
 | `Body` | `id`      | `string` | **Obrigatório**. O ID do item que você quer |
 | `Header` | `api_key` | `string` | **Obrigatório**. A chave da sua API |
 
