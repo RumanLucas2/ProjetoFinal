@@ -12,9 +12,10 @@ Um sistema de integração entre WhatsApp Business , aonde o pedido pelo cliente
   GET /api/items
 ```
 
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+| Local   | Parâmetro | Tipo   | Descrição                          |
+|---------|-----------|--------| :----------------------------------|
+| `Header`  | `api_key` | `string` | **Obrigatório**. A chave da sua API |
+
 
 #### Retorna um item
 
@@ -22,9 +23,10 @@ Um sistema de integração entre WhatsApp Business , aonde o pedido pelo cliente
   GET /api/items/${id}
 ```
 
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
-| `id`      | `string` | **Obrigatório**. O ID do item que você quer |
+| Local | Parâmetro | Tipo | Descrição                          |
+| ----- | --------- | ---- | :------------------------------------------ |
+| `Body` | `id`      | `string` | **Obrigatório**. O ID do item que você quer |
+| `Header` | `api_key` | `string` | **Obrigatório**. A chave da sua API |
 
 #### add(num1, num2)
 
@@ -35,7 +37,7 @@ Recebe dois números e retorna a sua soma.
 
 - [@Pedro Henrique Santos de Araujo](https://www.github.com/PedroHenriqueAraujo18)
 
-- [@Lucas Albrecht Ruman](https://www.github.com/RumanLucas2)
+- [@Lucas Albrechet Lopes Ruman](https://www.github.com/RumanLucas2)
 
 - [@Bruna Rodrigues Cardoso ](https://www.github.com/)
 
