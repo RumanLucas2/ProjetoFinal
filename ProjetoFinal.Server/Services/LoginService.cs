@@ -1,7 +1,6 @@
 ﻿namespace ProjetoFinal.Server.Services
 {
-    using BlMadre.C_.Models;
-    using global::BlMadre.C_.Services;
+    using ProjetoFinal.Server.Models;
     using Microsoft.AspNetCore.Http;
 
     public class LoginService

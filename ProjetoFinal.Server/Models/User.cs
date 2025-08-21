@@ -27,7 +27,7 @@ namespace ProjetoFinal.Server.Models
         /// Gets or sets the phone number associated with the entity.
         /// </summary>
         #endregion
-        public string? Telefone { get; set; } = string.Empty;
+        public Telefone Telefone { get; set; }
 
         #region symmaryCPF
         /// <summary>

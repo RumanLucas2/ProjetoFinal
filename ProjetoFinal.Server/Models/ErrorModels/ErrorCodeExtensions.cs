@@ -118,6 +118,11 @@ namespace ProjetoFinal.Server.Models
         InvalidCpf = 1002,
 
         /// <summary>
+        /// Represents an error code indicating that the provided DDD code is invalid.
+        /// </summary>
+        InvalidDDD = 1003,
+
+        /// <summary>
         /// Represents an error code indicating that the provided email address is invalid.
         /// </summary>
         /// <remarks>This error code is typically used to signal validation failures for email addresses.
@@ -136,6 +141,8 @@ namespace ProjetoFinal.Server.Models
         /// Represents an error code indicating that the provided CEP (postal code) is invalid.
         /// </summary>
         InvalidCep = 1006,
+
+   
 
         /// <summary>
         /// Represents an error code indicating that the provided password is invalid.
@@ -266,6 +273,7 @@ namespace ProjetoFinal.Server.Models
 
                 //erros de validação
                 ErrorCode.InvalidCpf => "CPF inválido.",
+                ErrorCode.InvalidDDD => "DDD inválido.",
                 ErrorCode.InvalidEmail => "Email inválido.",
                 ErrorCode.InvalidPhoneNumber => "Número de telefone inválido.",
                 ErrorCode.InvalidCep => "CEP inválido.",
