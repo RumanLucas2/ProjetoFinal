@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - My Site</title>
+    <!-- CSS externos -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!-- CSS Internos-->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/whitemode.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/darkmode.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="~/BlMadre.styles.css" asp-append-version="true" />
+    @RenderSection("Head", required: false)
+</head>
+<body id="@ViewData["PageId"]">
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light border-bottom box-shadow mb-3">
+            <div class="container-fluid px-4 d-flex align-items-center justify-content-between">
+
+                <!-- Logo à esquerda -->
+                <a class="navbar-brand" asp-area="" asp-page="/Index">My Site</a>
+
+                <!-- Hamburguer no centro (mobile only) -->
+                <button class="navbar-toggler d-block d-sm-none" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                        aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="custom-toggler-icon">
+                        <span class="bar-middle"></span>
+                    </span>
+                </button>
+
+                <!-- Botão Dark Mode (mobile only) -->
+                <button id="toggleDarkMode-mobile"
+                        class="btn btn-outline-secondary btn-sm d-block d-sm-none">
+                    Dark Mode
+                </button>
+            </div>
+
+            <!-- Collapse menu (visível após toggle) -->
+            <div class="collapse navbar-collapse transition-navbar px-4" id="mainNavbar">
+                <ul class="navbar-nav ms-auto d-flex align-items-center gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Privacy">Privacy</a>
+                    </li>
+                    <li class="nav-item d-none d-sm-block">
+                        <button id="toggleDarkMode" class="btn btn-outline-secondary text-nowrap px-4">
+                            Dark Mode
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+
+
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - BlMadre - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/darkmode.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,24 @@
+﻿@page
+@model BlMadre.Pages.PedidoTesteView
+@{
+    ViewData["Title"] = "PTV";
+    ViewData["PageId"] = "ptv";
+    ViewData[""] = "";
+}
+
+<div class="cardapio-scroll">
+    @Html.AntiForgeryToken()
+    @foreach (var produto in Model.Carrinho.Inner)
+    {
+        <div class="produto-box"
+             data-nome="@produto.Nome"
+             data-preco="@produto.Preco*@produto.Quantidade"
+             data-qtd="@produto.Quantidade">
+            <div class="produto-nome">@produto.Nome</div>
+            <div class="produto-quantidade">@produto.Quantidade</div>
+            <div class="produto-preco">R$ @((produto.Preco * (decimal)(produto.Quantidade??0)).ToString("N2"))</div>
+        </div>
+    }
+
+</div>
+    

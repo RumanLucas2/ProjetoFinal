@@ -1,0 +1,67 @@
+﻿@page
+@model BlMadre.Pages.CadastroModel
+@{
+    ViewData["Title"] = "Cadastro";
+    ViewData["PageId"] = "cadastro";
+}
+
+@section Head {
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+}
+<div class="container mt-5 mb-5 px-4 max-width-720">
+    <h2 class="mb-4 text-center">Cadastro</h2>
+
+    <form method="post">
+        @Html.AntiForgeryToken()
+
+        <div class="row">
+            <div class="mb-3">
+                <label class="form-label">Nome</label>
+                <input asp-for="Usuario.Nome" class="form-control" id="NomeInput" required />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col-6">
+                <label class="form-label">Telefone</label>
+                <input asp-for="Usuario.Telefone" class="form-control" id="phoneInput" placeholder="(XX) XXXXX-XXXX" maxlength="15" required />
+            </div>
+
+            <div class="mb-3 col-6">
+                <label class="form-label">CPF <span class="text-muted">(opcional)</span></label>
+                <input asp-for="Usuario.Cpf" class="form-control" id="CPFInput" placeholder="000.000.000-00" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col-6">
+                <label class="form-label">Data de Nascimento</label>
+                <input asp-for="Usuario.DataNascimento" type="text" id="nascimento" class="form-control" required placeholder="dd/mm" />
+            </div>
+            <div class="mb-3 col-6">
+                <label class="form-label">CEP</label>
+                <input asp-for="Usuario.CepString" id="CEPInput" class="form-control" placeholder="XXXXX-XXX" required />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col-6">
+                <label class="form-label">Número</label>
+                <input asp-for="Usuario.Numero" id="NumeroInput" class="form-control" required />
+            </div>
+            <div class="mb-3 col-6">
+                <label class="form-label">Complemento <span class="text-muted">(opcional)</span></label>
+                <input asp-for="Usuario.Complemento" id="CompInput" class="form-control" />
+            </div>
+        </div>
+
+        <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-success btn-lg">Cadastrar</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+
+}

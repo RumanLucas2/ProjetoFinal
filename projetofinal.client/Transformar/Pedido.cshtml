@@ -1,0 +1,77 @@
+﻿@page
+@model BlMadre.Pages.PedidoModel
+@{
+    ViewData["Title"] = "Pedido";
+    ViewData["PageId"] = "pedido";
+}
+<div class="container mt-5">
+    @Html.AntiForgeryToken()
+    <h2 class="text">Produtos</h2>
+    <input type="text" id="searchInput" class="form-control mb-4" placeholder="Buscar produto...">
+  <!-- Lista de produtos -->
+    <div class="cardapio-container">
+        <!-- Aqui está o FLEX, envolvendo a lista e os inputs -->
+        <div class="cardapio-conteudo">
+            <!-- Lado esquerdo: Lista de produtos -->
+            <div class="cardapio-container-inner">
+                <div class="cardapio-scroll">
+                    @foreach (var produto in Model.Produtos)
+                    {
+                        <div class="produto-box"
+                             data-nome="@produto.Nome"
+                             data-preco="@produto.Preco.ToString("N2")">
+                            <div class="produto-nome">@produto.Nome</div>
+                            <div class="produto-preco">R$ @produto.Preco.ToString("N2")</div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+            <!-- Lado direito: Inputs -->
+            <form class="input-area" id="form-add-produto">
+                <textarea class="input-grande" id="Item-nome" readonly></textarea>
+                <div class="input-menores">
+                    <div class="input-number-wrapper">
+                        <input id="input-number" type="number" min="1" step="1" value="1" />
+                        <div class="custom-spinner">
+                            <button type="button" class="up" id="up">▲</button>
+                            <button type="button" class="down" id="down">▼</button>
+                        </div>
+                    </div>
+                    <input id="Item-preco" type="text" />
+                </div>
+                <button type="submit" id="btn-add" class="btn-add">Adicionar ao Pedido</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Painel flutuante oculto -->
+<!-- Fica fora do .container -->
+<div class="carrinho-flutuante" >
+    <button id="carrinhoToggle" class="btn carrinho-btn" >
+        🛒
+    </button>
+
+    <div id="carrinhoOverlay" class="carrinho-overlay bg-dark text-light rounded shadow">
+        <div class="pedido-header">
+            <h5 class="text">Seu Pedido</h5>
+        </div>
+        <div class="lista-scroll">
+            <ul id="orderList" class="list-group list-group-flush">
+                <!-- Itens do pedido -->
+            </ul>
+         </div>
+        <form class="d-grid mt-3" method="post">
+            <!--Aqui vai o submit da pagina-->
+            <button type="submit" class="custom-submit-button" onclick="finalizarPedido()">Finalizar Pedido</button>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+
